@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/login.css';
+import './login.css';
 import { Link, NavLink, Redirect } from 'react-router-dom';
 
 export default class login extends Component {
