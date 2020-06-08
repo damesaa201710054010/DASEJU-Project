@@ -17,6 +17,11 @@ app.use(cors({origin: 'http://localhost:4200'}));
 const multi = multiparty({
     uploadDir: './subidas'
 });
+
+app.use(morgan('dev'));
+
+app.use(express.json());
+
 const subir = multer({
     upload
 });
@@ -28,7 +33,10 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Routes
-app.use('/api/usuarios', require('./routes/usuario.routes'));
+app.use('/user', require('./routes/user.route'));
+
+
+
 
 // starting the server
 app.listen(app.get('port'), () => {
