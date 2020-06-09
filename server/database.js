@@ -4,7 +4,7 @@ const path = require("path");
 const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 
-const URI = 'mongodb://localhost/software-db';
+const URI = 'mongodb://localhost/proyectoFinal';
 
 mongoose.connect(URI)
     .then(db => console.log('db is connected'))

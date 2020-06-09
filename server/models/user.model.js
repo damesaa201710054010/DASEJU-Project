@@ -3,10 +3,10 @@ const bcerypt = require('bcrypt-nodejs');
 const {Schema} = mongoose;
 
 const user = new Schema({
-    username: {type: String, required: true},
+    name: {type: String, required: true},
     password: {type: String, required: true},
     id: {type: Number, required: true},
-    edad: {type: Number}
+    email: {type: String, required: true}
 });
 
 user.pre('save', function(next){
@@ -30,7 +30,7 @@ user.pre('save', function(next){
 })
 
 
-user.methods.compararPassword = function(password, cb) {
+user.method.compararPassword = function(password, cb) {
     bcerypt.compare(password, this.password, (err, equal) => {
         if(err){
             return cb(err);

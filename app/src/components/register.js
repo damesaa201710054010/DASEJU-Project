@@ -8,16 +8,16 @@ export default class login extends Component {
         super();
         var log = false;
         this.state = {
-            User: '',
+            user: '',
             password: '',
-            log: false,
+            id: '',
+            email: '',
             regi: false
         }
 
         this.onChange = this.onChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
         this.rg = this.rg.bind(this);
-
     }
 
     onChange(e) {
@@ -27,20 +27,22 @@ export default class login extends Component {
         })
     }
 
+
     rg() {
         this.setState({
             regi: true
         });
     }
 
-
     submitForm(e) {
         e.preventDefault();
-        fetch('http://127.0.0.1:8000/user/login', {
+        fetch('http://127.0.0.1:8000/user/create', {
             method: 'POST',
             body: JSON.stringify({
-                email: this.state.user,
-                password: this.state.password
+                name: this.state.user,
+                password: this.state.password,
+                id: this.state.id,
+                email: this.state.email
             }),
             headers: {
                 'Accept': 'application/json',
@@ -49,34 +51,26 @@ export default class login extends Component {
         })
             .then(res => res.json())
             .then(data => {
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("data", this.state.user);
-                sessionStorage.setItem('user', data);
                 this.setState({
                     redirect: true
                 })
             })
             .catch((err) => {
-                console.log("User is not register");
-                alert("User is not register");
+                alert("No fue posible el registro, intentelo nuevamente");
             })
     }
 
     render() {
-        if (this.state.redirect) {
-            return (<Redirect to={'/home'}></Redirect>);
-        }
-
-        if (sessionStorage.getItem("user")) {
-            return (<Redirect to={'/home'}></Redirect>);
-        }
-
         if (this.state.regi) {
-            return (<Redirect to={'/register'}></Redirect>);
+            return (<Redirect to={'/'}></Redirect>);
+        }
+
+        if(this.state.redirect){
+            return (<Redirect to={'/'}></Redirect>);
         }
 
         return (
-            <div className="App"  >
+            <div className="App">
                 <div className="App__Aside">
                     <img className="segunda" align="center" id="imagenPrincipal" src={imagenPrincipal} />
                 </div>
@@ -85,9 +79,9 @@ export default class login extends Component {
                         <form class="col s12" onSubmit={this.submitForm}>
                             <div class="row">
                                 <div class="input-field col s9">
-                                    <i class="material-icons prefix">email</i>
-                                    <input id="icon_prefix" type="email" class="validate" name="user" value={this.state.user} onChange={this.onChange} />
-                                    <label for="icon_prefix">Correo ELectronico</label>
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="icon_prefix" type="text" class="validate" name="user" value={this.state.user} onChange={this.onChange} />
+                                    <label for="icon_prefix">Nombre Completo</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -97,15 +91,29 @@ export default class login extends Component {
                                     <label for="icon_lock">Password</label>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="input-field col s9">
+                                    <i class="material-icons prefix">closed_caption</i>
+                                    <input id="icon_lock" type="number" class="validate" name="id" value={this.state.id} onChange={this.onChange} />
+                                    <label for="icon_lock">Numero de cedula</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s9">
+                                    <i class="material-icons prefix">email</i>
+                                    <input id="icon_lock" type="email" class="validate" name="email" value={this.state.email} onChange={this.onChange} />
+                                    <label for="icon_lock">Correo Electronico</label>
+                                </div>
+                            </div>
                             <div align ="center">
-                                <button class="btn waves-effect waves-light" type="submit" name="action">Iniciar Sesion
+                                <button class="btn waves-effect waves-light" type="submit" name="action">Registrarse
                                             <i class="material-icons right">send</i>
                                 </button>
                             </div>
                         </form>
                         <div><br></br></div> 
                             <div align="center">
-                                <a class="waves-effect waves-light btn-large" type='button' onClick={this.rg}>Registrarse</a>
+                                <a class="waves-effect waves-light btn-large" type='button' onClick={this.rg}>Iniciar Sesion</a>
                         </div>
                     </div>
                 </div>

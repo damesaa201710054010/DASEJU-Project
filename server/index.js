@@ -10,10 +10,10 @@ const { mongoose } = require('./database');
 const { upload } = require('./database');
 
 // Settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8000);
 
 // Middlewares
-app.use(cors({origin: 'http://localhost:4200'}));
+app.use(cors({origin: 'http://localhost:3000'}));
 const multi = multiparty({
     uploadDir: './subidas'
 });
@@ -34,6 +34,9 @@ app.use(express.json());
 
 // Routes
 app.use('/user', require('./routes/user.route'));
+app.use('/upload', require('./routes/file-upload'));
+app.use('/documents', require('./routes/documents'));
+
 
 
 

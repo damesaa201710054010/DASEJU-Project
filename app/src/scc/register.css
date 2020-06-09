@@ -12,7 +12,22 @@ select {
     opacity: 0.5;
     color: white;
   }
-  
+
+
+  .segunda
+  {
+    width:800px; 
+    height: 673px;
+    z-index: -1;
+  } 
+
+  .imagenes {
+    width: 100%;
+    height: 100vh;
+    background-image: url("../Images/image1.jpg");
+  }
+
+
   
   .App {
     height: 100vh;
