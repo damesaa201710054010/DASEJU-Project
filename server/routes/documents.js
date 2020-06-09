@@ -6,6 +6,6 @@ router.route('/save')
       .post(save);
 
 router.route('/list') 
-      .get(list); 
+      .post(list); 
 
 module.exports = router;

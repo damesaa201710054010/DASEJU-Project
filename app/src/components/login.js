@@ -36,7 +36,7 @@ export default class login extends Component {
 
     submitForm(e) {
         e.preventDefault();
-        fetch('http://127.0.0.1:8000/user/login', {
+        fetch('http://35.175.129.146:8000/user/login', {
             method: 'POST',
             body: JSON.stringify({
                 email: this.state.user,

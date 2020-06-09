@@ -6,8 +6,11 @@ const user = new Schema({
     name: {type: String, required: true},
     password: {type: String, required: true},
     id: {type: Number, required: true},
-    email: {type: String, required: true}
+    email: {type: String, required: true},
+    adress: {type: String, required: true}
 });
+
+
 
 user.pre('save', function(next){
     const usuario = this;

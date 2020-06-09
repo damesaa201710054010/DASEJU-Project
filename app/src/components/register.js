@@ -36,13 +36,14 @@ export default class login extends Component {
 
     submitForm(e) {
         e.preventDefault();
-        fetch('http://127.0.0.1:8000/user/create', {
+        fetch('http://35.175.129.146:8000/user/create', {
             method: 'POST',
             body: JSON.stringify({
                 name: this.state.user,
                 password: this.state.password,
                 id: this.state.id,
-                email: this.state.email
+                email: this.state.email,
+                adress: this.state.adress
             }),
             headers: {
                 'Accept': 'application/json',
@@ -105,6 +106,14 @@ export default class login extends Component {
                                     <label for="icon_lock">Correo Electronico</label>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="input-field col s9">
+                                    <i class="material-icons prefix">home</i>
+                                    <input id="icon_lock" type="text" class="validate" name="adress" value={this.state.adress} onChange={this.onChange} />
+                                    <label for="icon_lock">Direccion</label>
+                                </div>
+                            </div>
+                            <br></br>
                             <div align ="center">
                                 <button class="btn waves-effect waves-light" type="submit" name="action">Registrarse
                                             <i class="material-icons right">send</i>

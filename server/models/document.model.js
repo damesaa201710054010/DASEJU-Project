@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const document = new Schema({
-    email: {type: String, required: true},
-    id: {type: String, required: true},
-    direccion: {type: String, required: true},
+    email: {type: String, required: false},
+    id: {type: String, required: false},
+    direccion: {type: String, required: false},
+    nombre: {type: String, required:false}
 });
 
 

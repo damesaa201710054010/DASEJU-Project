@@ -13,7 +13,7 @@ const { upload } = require('./database');
 app.set('port', process.env.PORT || 8000);
 
 // Middlewares
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors({origin: 'http://54.144.136.197'}));
 const multi = multiparty({
     uploadDir: './subidas'
 });
